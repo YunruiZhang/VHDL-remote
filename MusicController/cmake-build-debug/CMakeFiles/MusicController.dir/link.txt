@@ -1,0 +1,1 @@
+/USR/BIN/c++  -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/MusicController.dir/main.cpp.o CMakeFiles/MusicController.dir/controller/Controller.cpp.o CMakeFiles/MusicController.dir/controller/MusicList.cpp.o  -o MusicController 

@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/Controller.h
+cstdlib
+-
+MusicList.h
+../include/MusicList.h
+
+../include/MusicList.h
+string
+-
+
+/Users/kpz/Downloads/GitHub/3601-Project/MusicController/controller/Controller.cpp
+Controller.h
+/Users/kpz/Downloads/GitHub/3601-Project/MusicController/controller/Controller.h
+
+/Users/kpz/Downloads/GitHub/3601-Project/MusicController/controller/MusicList.cpp
+cstdlib
+-
+dirent.h
+-
+MusicList.h
+/Users/kpz/Downloads/GitHub/3601-Project/MusicController/controller/MusicList.h
+
+/Users/kpz/Downloads/GitHub/3601-Project/MusicController/main.cpp
+Controller.h
+-
+
