@@ -2,9 +2,24 @@
 // Created by Charlie on 2020/10/10.
 //
 
+#include <algorithm>
 #include <cstdlib>
 #include <dirent.h>
 #include "MusicList.h"
+
+/**
+ * Check if a file is playable by its suffix.
+ * @return {@code true} if suffix matches any video or music format, or {@code false} if none
+ */
+static bool isPlayable(const char *);
+
+/**
+ * Check if a string is ending with a substring.
+ * @param fullString the initial string
+ * @param ending the substring
+ * @return {@code true} if {@code fullstring} ends with {@code ending}, or {@code false} if not
+ */
+static bool hasEnding (const string &fullString, const string &ending);
 
 
 MusicList newMusicList()
@@ -19,16 +34,17 @@ MusicList newMusicList()
 
 void addMusic(MusicList l, const char *name)
 {
-    if (!musicExist(l, name))
+
+    if (!musicExist(l, name) && isPlayable(name))
     {
         if (l->size == 0)
         {
-            strcpy(l->music[0]->musicName, name);
+            strcpy_s(l->music[0]->musicName, strlen(name)+1, name);
         }
         else
         {
             l->music = static_cast<ItemMusic **>(realloc(l->music, (++l->size) * sizeof(ItemMusic)));
-            strcpy(l->music[l->size - 1]->musicName, name);
+            strcpy_s(l->music[l->size - 1]->musicName, strlen(name)+1, name);
         }
     }
 }
@@ -81,4 +97,32 @@ int musicIndex(MusicList l, const char * name)
 void setCurrIndex(MusicList l, int x)
 {
     l->curr = x;
+}
+
+static bool isPlayable(const char * name)
+{
+    string audioFormat[] = {".mp3", ".wav", ".wma", ".m4a", ".aac"};
+    string videoFormat[] = {".mp4", ".mov", ".wmv", ".flv", ".avi", ".mkv"};
+
+    for (const auto & i : audioFormat)
+    {
+        if (hasEnding(name, i)) return true;
+    }
+    for (const auto & i : videoFormat)
+    {
+        if (hasEnding(name, i)) return true;
+    }
+    return false;
+}
+
+static bool hasEnding(const string &fullString, const string &ending)
+{
+    if (fullString.length() >= ending.length())
+    {
+        return (0 == fullString.compare(fullString.length() - ending.length(), ending.length(), ending));
+    }
+    else
+    {
+        return false;
+    }
 }

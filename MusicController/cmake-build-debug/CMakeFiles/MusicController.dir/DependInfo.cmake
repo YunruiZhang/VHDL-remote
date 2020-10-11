@@ -4,11 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/kpz/Downloads/GitHub/3601-Project/MusicController/controller/Controller.cpp" "/Users/kpz/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug/CMakeFiles/MusicController.dir/controller/Controller.cpp.o"
-  "/Users/kpz/Downloads/GitHub/3601-Project/MusicController/controller/MusicList.cpp" "/Users/kpz/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug/CMakeFiles/MusicController.dir/controller/MusicList.cpp.o"
-  "/Users/kpz/Downloads/GitHub/3601-Project/MusicController/main.cpp" "/Users/kpz/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug/CMakeFiles/MusicController.dir/main.cpp.o"
+  "//Mac/Home/Downloads/GitHub/3601-Project/MusicController/main.cpp" "//Mac/Home/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug/CMakeFiles/MusicController.dir/main.cpp.obj"
+  "//Mac/Home/Downloads/GitHub/3601-Project/MusicController/source/Controller.cpp" "//Mac/Home/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug/CMakeFiles/MusicController.dir/source/Controller.cpp.obj"
+  "//Mac/Home/Downloads/GitHub/3601-Project/MusicController/source/Interface.cpp" "//Mac/Home/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug/CMakeFiles/MusicController.dir/source/Interface.cpp.obj"
+  "//Mac/Home/Downloads/GitHub/3601-Project/MusicController/source/MusicList.cpp" "//Mac/Home/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug/CMakeFiles/MusicController.dir/source/MusicList.cpp.obj"
   )
-set(CMAKE_CXX_COMPILER_ID "AppleClang")
+set(CMAKE_CXX_COMPILER_ID "MSVC")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
