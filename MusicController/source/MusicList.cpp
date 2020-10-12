@@ -101,16 +101,12 @@ void setCurrIndex(MusicList l, int x)
 static bool isPlayable(const char * name)
 {
     string audioFormat[] = {".mp3", ".wav", ".wma", ".m4a", ".aac"};
-    string videoFormat[] = {".mp4", ".mov", ".wmv", ".flv", ".avi", ".mkv"};
 
     for (const auto & i : audioFormat)
     {
         if (hasEnding(name, i)) return true;
     }
-    for (const auto & i : videoFormat)
-    {
-        if (hasEnding(name, i)) return true;
-    }
+    
     return false;
 }
 
