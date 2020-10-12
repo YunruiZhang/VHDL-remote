@@ -1,8 +1,0 @@
-//
-// Created by Charlie on 10/10/2020.
-//
-
-#ifndef MUSICCONTROLLER_INTERFACE_H
-#define MUSICCONTROLLER_INTERFACE_H
-
-#endif //MUSICCONTROLLER_INTERFACE_H

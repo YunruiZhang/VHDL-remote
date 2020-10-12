@@ -1,11 +1,9 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/MusicController.dir/main.cpp.obj"
-  "CMakeFiles/MusicController.dir/source/Controller.cpp.obj"
-  "CMakeFiles/MusicController.dir/source/Interface.cpp.obj"
-  "CMakeFiles/MusicController.dir/source/MusicList.cpp.obj"
-  "MusicController.exe"
-  "MusicController.exe.manifest"
-  "MusicController.lib"
+  "CMakeFiles/MusicController.dir/main.cpp.o"
+  "CMakeFiles/MusicController.dir/source/Controller.cpp.o"
+  "CMakeFiles/MusicController.dir/source/MusicList.cpp.o"
+  "CMakeFiles/MusicController.dir/source/command.cpp.o"
+  "MusicController"
   "MusicController.pdb"
 )
 

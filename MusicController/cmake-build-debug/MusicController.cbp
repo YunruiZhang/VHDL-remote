@@ -4,113 +4,112 @@
 	<Project>
 		<Option title="MusicController"/>
 		<Option makefile_is_custom="1"/>
-		<Option compiler="msvc8"/>
+		<Option compiler="gcc"/>
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="//Mac/Home/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug"/>
+				<Option working_dir="/Users/kpz/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="nmake /NOLOGO /f \\Mac\Home\Downloads\GitHub\3601-Project\MusicController\cmake-build-debug\Makefile VERBOSE=1 all"/>
-					<CompileFile command="nmake /NOLOGO /f \\Mac\Home\Downloads\GitHub\3601-Project\MusicController\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f \\Mac\Home\Downloads\GitHub\3601-Project\MusicController\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f \\Mac\Home\Downloads\GitHub\3601-Project\MusicController\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="MusicController">
-				<Option output="//Mac/Home/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug/MusicController.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="//Mac/Home/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="msvc8"/>
-				<Compiler>
-					<Add directory="//Mac/Home/Downloads/GitHub/3601-Project/MusicController/include"/>
-					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\ATLMFC\include"/>
-					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\ucrt"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\shared"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\um"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\winrt"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\cppwinrt"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="nmake /NOLOGO /f \\Mac\Home\Downloads\GitHub\3601-Project\MusicController\cmake-build-debug\Makefile VERBOSE=1 MusicController"/>
-					<CompileFile command="nmake /NOLOGO /f \\Mac\Home\Downloads\GitHub\3601-Project\MusicController\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f \\Mac\Home\Downloads\GitHub\3601-Project\MusicController\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f \\Mac\Home\Downloads\GitHub\3601-Project\MusicController\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="MusicController/fast">
-				<Option output="//Mac/Home/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug/MusicController.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="//Mac/Home/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="msvc8"/>
-				<Compiler>
-					<Add directory="//Mac/Home/Downloads/GitHub/3601-Project/MusicController/include"/>
-					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\ATLMFC\include"/>
-					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\ucrt"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\shared"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\um"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\winrt"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\cppwinrt"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="nmake /NOLOGO /f \\Mac\Home\Downloads\GitHub\3601-Project\MusicController\cmake-build-debug\Makefile VERBOSE=1 MusicController/fast"/>
-					<CompileFile command="nmake /NOLOGO /f \\Mac\Home\Downloads\GitHub\3601-Project\MusicController\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f \\Mac\Home\Downloads\GitHub\3601-Project\MusicController\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f \\Mac\Home\Downloads\GitHub\3601-Project\MusicController\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="//Mac/Home/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="nmake /NOLOGO /f \\Mac\Home\Downloads\GitHub\3601-Project\MusicController\cmake-build-debug\Makefile VERBOSE=1 edit_cache"/>
-					<CompileFile command="nmake /NOLOGO /f \\Mac\Home\Downloads\GitHub\3601-Project\MusicController\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f \\Mac\Home\Downloads\GitHub\3601-Project\MusicController\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f \\Mac\Home\Downloads\GitHub\3601-Project\MusicController\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<Build command="/USR/BIN/make -j8 -f &quot;/Users/kpz/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/USR/BIN/make -j8 -f &quot;/Users/kpz/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/USR/BIN/make -j8 -f &quot;/Users/kpz/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/USR/BIN/make -j8 -f &quot;/Users/kpz/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="//Mac/Home/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug"/>
+				<Option working_dir="/Users/kpz/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="nmake /NOLOGO /f \\Mac\Home\Downloads\GitHub\3601-Project\MusicController\cmake-build-debug\Makefile VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="nmake /NOLOGO /f \\Mac\Home\Downloads\GitHub\3601-Project\MusicController\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f \\Mac\Home\Downloads\GitHub\3601-Project\MusicController\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f \\Mac\Home\Downloads\GitHub\3601-Project\MusicController\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<Build command="/USR/BIN/make -j8 -f &quot;/Users/kpz/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/USR/BIN/make -j8 -f &quot;/Users/kpz/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/USR/BIN/make -j8 -f &quot;/Users/kpz/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/USR/BIN/make -j8 -f &quot;/Users/kpz/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/kpz/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/USR/BIN/make -j8 -f &quot;/Users/kpz/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/USR/BIN/make -j8 -f &quot;/Users/kpz/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/USR/BIN/make -j8 -f &quot;/Users/kpz/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/USR/BIN/make -j8 -f &quot;/Users/kpz/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="MusicController">
+				<Option output="/Users/kpz/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug/MusicController" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/kpz/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/kpz/Downloads/GitHub/3601-Project/MusicController/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/11.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/USR/BIN/make -j8 -f &quot;/Users/kpz/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug/Makefile&quot;  VERBOSE=1 MusicController"/>
+					<CompileFile command="/USR/BIN/make -j8 -f &quot;/Users/kpz/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/USR/BIN/make -j8 -f &quot;/Users/kpz/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/USR/BIN/make -j8 -f &quot;/Users/kpz/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="MusicController/fast">
+				<Option output="/Users/kpz/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug/MusicController" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/kpz/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/kpz/Downloads/GitHub/3601-Project/MusicController/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/11.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/USR/BIN/make -j8 -f &quot;/Users/kpz/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug/Makefile&quot;  VERBOSE=1 MusicController/fast"/>
+					<CompileFile command="/USR/BIN/make -j8 -f &quot;/Users/kpz/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/USR/BIN/make -j8 -f &quot;/Users/kpz/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/USR/BIN/make -j8 -f &quot;/Users/kpz/Downloads/GitHub/3601-Project/MusicController/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="//Mac/Home/Downloads/GitHub/3601-Project/MusicController/include/Controller.h">
+		<Unit filename="/Users/kpz/Downloads/GitHub/3601-Project/MusicController/include/Command.h">
 			<Option target="MusicController"/>
 		</Unit>
-		<Unit filename="//Mac/Home/Downloads/GitHub/3601-Project/MusicController/include/Interface.h">
+		<Unit filename="/Users/kpz/Downloads/GitHub/3601-Project/MusicController/include/Controller.h">
 			<Option target="MusicController"/>
 		</Unit>
-		<Unit filename="//Mac/Home/Downloads/GitHub/3601-Project/MusicController/include/MusicList.h">
+		<Unit filename="/Users/kpz/Downloads/GitHub/3601-Project/MusicController/include/Format.h">
 			<Option target="MusicController"/>
 		</Unit>
-		<Unit filename="//Mac/Home/Downloads/GitHub/3601-Project/MusicController/include/dirent.h">
+		<Unit filename="/Users/kpz/Downloads/GitHub/3601-Project/MusicController/include/MusicList.h">
 			<Option target="MusicController"/>
 		</Unit>
-		<Unit filename="//Mac/Home/Downloads/GitHub/3601-Project/MusicController/main.cpp">
+		<Unit filename="/Users/kpz/Downloads/GitHub/3601-Project/MusicController/include/Strs.h">
 			<Option target="MusicController"/>
 		</Unit>
-		<Unit filename="//Mac/Home/Downloads/GitHub/3601-Project/MusicController/source/Controller.cpp">
+		<Unit filename="/Users/kpz/Downloads/GitHub/3601-Project/MusicController/main.cpp">
 			<Option target="MusicController"/>
 		</Unit>
-		<Unit filename="//Mac/Home/Downloads/GitHub/3601-Project/MusicController/source/Interface.cpp">
+		<Unit filename="/Users/kpz/Downloads/GitHub/3601-Project/MusicController/source/Controller.cpp">
 			<Option target="MusicController"/>
 		</Unit>
-		<Unit filename="//Mac/Home/Downloads/GitHub/3601-Project/MusicController/source/MusicList.cpp">
+		<Unit filename="/Users/kpz/Downloads/GitHub/3601-Project/MusicController/source/MusicList.cpp">
 			<Option target="MusicController"/>
 		</Unit>
-		<Unit filename="//Mac/Home/Downloads/GitHub/3601-Project/MusicController/CMakeLists.txt">
+		<Unit filename="/Users/kpz/Downloads/GitHub/3601-Project/MusicController/source/command.cpp">
+			<Option target="MusicController"/>
+		</Unit>
+		<Unit filename="/Users/kpz/Downloads/GitHub/3601-Project/MusicController/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

@@ -19,12 +19,14 @@ private:
 public:
     void play();
     void pause();
+    void stop();
     void next();
     void previous();
     void volumeUp();
     void volumeDown();
     void loadMusicFromDir(const char *);
-    void changeMode(mode);
+    void setMode(mode);
+    int  songsNumber();
     const char * getCurrentMusic();
 };
 

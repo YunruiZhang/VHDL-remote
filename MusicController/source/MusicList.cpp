@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <cstdlib>
 #include <dirent.h>
+#include <Format.h>
 #include "MusicList.h"
 
 /**
@@ -13,14 +14,11 @@
  */
 static bool isPlayable(const char *);
 
-/**
- * Check if a string is ending with a substring.
- * @param fullString the initial string
- * @param ending the substring
- * @return {@code true} if {@code fullstring} ends with {@code ending}, or {@code false} if not
- */
-static bool hasEnding (const string &fullString, const string &ending);
-
+struct MusicListRep {
+    ItemMusic **music;
+    int         size;
+    int         curr;
+};
 
 MusicList newMusicList()
 {
@@ -39,12 +37,12 @@ void addMusic(MusicList l, const char *name)
     {
         if (l->size == 0)
         {
-            strcpy_s(l->music[0]->musicName, strlen(name)+1, name);
+            strcpy(l->music[0]->musicName, name);
         }
         else
         {
             l->music = static_cast<ItemMusic **>(realloc(l->music, (++l->size) * sizeof(ItemMusic)));
-            strcpy_s(l->music[l->size - 1]->musicName, strlen(name)+1, name);
+            strcpy(l->music[l->size - 1]->musicName, name);
         }
     }
 }
@@ -62,9 +60,10 @@ void loadMusic(MusicList l, const char *dir)
     }
     else
     {
-        perror("Failed to open directory.");
-        exit(EXIT_FAILURE);
+        PrintError("Failed to open directory: " << dir);
+        return;
     }
+    PrintSuccess("Currently " << l->size << " songs.");
 }
 
 bool musicExist(MusicList l, const char * name)
@@ -115,14 +114,17 @@ static bool isPlayable(const char * name)
     return false;
 }
 
-static bool hasEnding(const string &fullString, const string &ending)
+int getCurrIndex(MusicList l)
 {
-    if (fullString.length() >= ending.length())
-    {
-        return (0 == fullString.compare(fullString.length() - ending.length(), ending.length(), ending));
-    }
-    else
-    {
-        return false;
-    }
+    return l->curr;
+}
+
+int getListSize(MusicList l)
+{
+    return l->size;
+}
+
+char * getCurrentMusic(MusicList l)
+{
+    return l->music[l->curr]->musicName;
 }

@@ -2,6 +2,7 @@
 // Created by Charlie on 2020/10/10.
 //
 #include <string>
+#include <Strs.h>
 #ifndef MUSICCONTROLLER_MUSICLIST_H
 #define MUSICCONTROLLER_MUSICLIST_H
 
@@ -12,11 +13,7 @@ typedef struct ItemMusic
     char * musicName;
 } ItemMusic;
 
-typedef struct MusicListRep {
-    ItemMusic **music;
-    int         size;
-    int         curr;
-} * MusicList;
+typedef struct MusicListRep  * MusicList;
 
 
 /** FUNCTIONS **/
@@ -58,6 +55,11 @@ int musicIndex(MusicList, const char *);
  * Set the current index to a specific value.
  */
 void setCurrIndex(MusicList, int);
+
+
+int getCurrIndex(MusicList);
+int getListSize(MusicList);
+char * getCurrentMusic(MusicList);
 
 
 #endif //MUSICCONTROLLER_MUSICLIST_H

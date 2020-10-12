@@ -15,18 +15,25 @@ void Controller::pause()
 
 }
 
+void Controller::stop()
+{
+
+}
+
 void Controller::next()
 {
     int index = 0;
     if (playMode == ORDER_PLAY)
     {
-        index = (musicList->curr + 1) % musicList->size;
+        index = getCurrIndex(musicList) + 1 < 0
+                ? getListSize(musicList) + 1
+                : 0;
     }
     else if (playMode == RANDOM_PLAY)
     {
-        while (index == musicList->curr)
+        while (index == getCurrIndex(musicList))
         {
-            index = rand() % musicList->size;
+            index = rand() % getListSize(musicList);
         }
     }
     setCurrIndex(musicList, index);
@@ -37,15 +44,15 @@ void Controller::previous()
     int index = 0;
     if (playMode == ORDER_PLAY)
     {
-        index = musicList->curr - 1 < 0
-                ? musicList->size - 1
-                : musicList->curr - 1;
+        index = getCurrIndex(musicList) - 1 < 0
+                ? getListSize(musicList) - 1
+                : getCurrIndex(musicList) - 1;
     }
     else if (playMode == RANDOM_PLAY)
     {
-        while (index == musicList->curr)
+        while (index == getCurrIndex(musicList))
         {
-            index = rand() % musicList->size;
+            index = rand() % getListSize(musicList);
         }
     }
     setCurrIndex(musicList, index);
@@ -66,14 +73,17 @@ void Controller::loadMusicFromDir(const char * dir)
     loadMusic(musicList, dir);
 }
 
-void Controller::changeMode(mode m)
+void Controller::setMode(mode m)
 {
     playMode = m;
 }
 
-const char * Controller::getCurrentMusic()
+int Controller::songsNumber()
 {
-    return musicList->music[musicList->curr]->musicName;
+    return ::getListSize(musicList);
 }
 
-
+const char * Controller::getCurrentMusic()
+{
+    return ::getCurrentMusic(musicList);
+}

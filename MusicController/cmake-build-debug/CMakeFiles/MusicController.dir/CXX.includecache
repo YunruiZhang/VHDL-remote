@@ -6,57 +6,41 @@
 
 #IncludeRegexTransform: 
 
+../include/Command.h
+iostream
+-
+Format.h
+-
+Strs.h
+-
+vector
+-
+Controller.h
+../include/Controller.h
+
 ../include/Controller.h
 cstdlib
 -
 MusicList.h
 ../include/MusicList.h
 
-../include/Interface.h
+../include/Format.h
 
 ../include/MusicList.h
 string
 -
-
-../include/dirent.h
-windows.h
--
-stdio.h
--
-stdarg.h
--
-wchar.h
--
-string.h
--
-stdlib.h
--
-malloc.h
--
-sys/types.h
--
-sys/stat.h
--
-errno.h
+Strs.h
 -
 
-//Mac/Home/Downloads/GitHub/3601-Project/MusicController/source/Controller.cpp
-Controller.h
-//Mac/Home/Downloads/GitHub/3601-Project/MusicController/source/Controller.h
-
-//Mac/Home/Downloads/GitHub/3601-Project/MusicController/source/Interface.cpp
-Interface.h
-//Mac/Home/Downloads/GitHub/3601-Project/MusicController/source/Interface.h
-windows.h
+../include/Strs.h
+string
+-
+iostream
+-
+vector
 -
 
-//Mac/Home/Downloads/GitHub/3601-Project/MusicController/source/MusicList.cpp
-algorithm
+/Users/kpz/Downloads/GitHub/3601-Project/MusicController/source/command.cpp
+Command.h
 -
-cstdlib
--
-dirent.h
--
-MusicList.h
-//Mac/Home/Downloads/GitHub/3601-Project/MusicController/source/MusicList.h
 
