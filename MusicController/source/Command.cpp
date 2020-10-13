@@ -40,27 +40,22 @@ void handleCommand(Controller * c, const char * cmdin)
     else if (cmd[0] == "play")
     {
         c->play();
-        PrintSuccess("Played");
     }
     else if (cmd[0] == "pause")
     {
         c->pause();
-        PrintSuccess("Paused.");
     }
     else if (cmd[0] == "stop")
     {
         c->stop();
-        PrintSuccess("Stopped.");
     }
     else if (cmd[0] == "prev")
     {
         c->previous();
-        PrintSuccess("Changed to the previous song.");
     }
     else if (cmd[0] == "next")
     {
         c->next();
-        PrintSuccess("Changed to the next song.");
     }
     else if (cmd[0] == "volume")
     {
@@ -73,37 +68,55 @@ void handleCommand(Controller * c, const char * cmdin)
         if (cmd[1] == "i")
         {
             c->volumeUp();
-            PrintSuccess("Volume increased.");
         }
         else if (cmd[1] == "d")
         {
             c->volumeDown();
-            PrintSuccess("Volume deceased.");
         }
     }
     else if (cmd[0] == "mode")
     {
-        if (cmd.size() < 2 || (cmd[1] != "r" && cmd[1] != "s" && cmd[1] != "o"))
+        if (cmd.size() < 2)
         {
-            PrintError("You must specify the order in o(rderly), s(ingle song) or r(andomly).");
-            return;
+            cout << "Current mode: ";
+            switch (c->getMode())
+            {
+                case ORDER_PLAY:
+                    cout << "Orderly";
+                    break;
+                case SINGLE_PLAY:
+                    cout << "Circularly";
+                    break;
+                case RANDOM_PLAY:
+                    cout << "Randomly";
+                    break;
+            }
+            cout << endl;
         }
-
-        if (cmd[1] == "r")
+        else
         {
-            c->setMode(RANDOM_PLAY);
-            PrintSuccess("Music will be played randomly.");
+            if (cmd[1] == "r")
+            {
+                c->setMode(RANDOM_PLAY);
+            }
+            else if (cmd[1] == "s")
+            {
+                c->setMode(SINGLE_PLAY);
+            }
+            else if (cmd[1] == "o")
+            {
+                c->setMode(ORDER_PLAY);
+            }
+            else
+            {
+                PrintError("You must specify the order in o(rderly), s(ingle song) or r(andomly).");
+                return;
+            }
         }
-        else if (cmd[1] == "s")
-        {
-            c->setMode(SINGLE_PLAY);
-            PrintSuccess("Music will be played circularly.");
-        }
-        else if (cmd[1] == "o")
-        {
-            c->setMode(ORDER_PLAY);
-            PrintSuccess("Music will be played orderly.");
-        }
+    }
+    else if (cmd[0] == "list")
+    {
+        c->showSongs();
     }
     else if (cmd[0] == "quit")
     {

@@ -6,86 +6,73 @@
 #include <cstdlib>
 #include <dirent.h>
 #include <Format.h>
+#include <iomanip>
+#include <utility>
 #include "MusicList.h"
 
 /**
  * Check if a file is playable by its suffix.
  * @return {@code true} if suffix matches any video or music format, or {@code false} if none
  */
-static bool isPlayable(const char *);
-
-struct MusicListRep {
-    ItemMusic **music;
-    int         size;
-    int         curr;
-};
+static bool isPlayable(const string&);
 
 MusicList newMusicList()
 {
-    auto l = static_cast<MusicList>(malloc(sizeof(struct MusicListRep)));
-    l->music = static_cast<ItemMusic **>(malloc(sizeof(ItemMusic *)));
-    l->music[0] = static_cast<ItemMusic *>(malloc(sizeof(ItemMusic)));
-    l->size = 0;
-    l->curr = 0;
-    return l;
+    MusicList m;
+    m.curr = -1;
+    return m;
 }
 
-void addMusic(MusicList l, const char *name)
+NodeMusic newNodeMusic(const string& name)
 {
+    NodeMusic i;
+    i.musicName = name;
+    return i;
+}
 
+int addMusic(MusicList& l, const string& name)
+{
     if (!musicExist(l, name) && isPlayable(name))
     {
-        if (l->size == 0)
-        {
-            strcpy(l->music[0]->musicName, name);
-        }
-        else
-        {
-            l->music = static_cast<ItemMusic **>(realloc(l->music, (++l->size) * sizeof(ItemMusic)));
-            strcpy(l->music[l->size - 1]->musicName, name);
-        }
+        l.music.push_back(newNodeMusic(name));
+        return 1;
     }
+    return 0;
 }
 
-void loadMusic(MusicList l, const char *dir)
+void loadMusic(MusicList& l, const char * dir)
 {
     DIR * d;
     struct dirent *ent;
+    l.music.clear();
     if ((d = opendir(dir)) != nullptr)
     {
+        int n = 0;
         while ((ent = readdir(d)) != nullptr)
         {
-            addMusic(l, ent->d_name);
+            n += addMusic(l, ent->d_name);
         }
+        cout << SUCCESSINFO << "Loaded " << n << " songs." << endl;
+        l.curr = 0;
     }
     else
     {
         PrintError("Failed to open directory: " << dir);
         return;
     }
-    PrintSuccess("Currently " << l->size << " songs.");
 }
 
-bool musicExist(MusicList l, const char * name)
+bool musicExist(MusicList l, const string& name)
 {
-    return musicIndex(l, name) != -1;
+    return musicIndex(std::move(l), name) != -1;
 }
 
-void freeMusicList(MusicList l)
+
+int musicIndex(MusicList l, const string& name)
 {
-    for (int i = 0; i < l->size; i++)
+    for (int i = 0; i < l.music.size(); i++)
     {
-        free(l->music[i]);
-    }
-    free(l->music);
-    free(l);
-}
-
-int musicIndex(MusicList l, const char * name)
-{
-    for (int i = 0; i < l->size; i++)
-    {
-        if (l->music[i]->musicName == name)
+        if (l.music[i].musicName == name)
         {
             return i;
         }
@@ -93,12 +80,12 @@ int musicIndex(MusicList l, const char * name)
     return -1;
 }
 
-void setCurrIndex(MusicList l, int x)
+void setCurrIndex(MusicList& l, int x)
 {
-    l->curr = x;
+    l.curr = x;
 }
 
-static bool isPlayable(const char * name)
+static bool isPlayable(const string& name)
 {
     string audioFormat[] = {".mp3", ".wav", ".wma", ".m4a", ".aac"};
 
@@ -110,17 +97,36 @@ static bool isPlayable(const char * name)
     return false;
 }
 
-int getCurrIndex(MusicList l)
+int getCurrIndex(const MusicList& l)
 {
-    return l->curr;
+    return l.curr;
 }
 
-int getListSize(MusicList l)
+string getCurrMusic(MusicList l)
 {
-    return l->size;
+    return l.music[l.curr].musicName;
 }
 
-char * getCurrentMusic(MusicList l)
+int getListSize(const MusicList& l)
 {
-    return l->music[l->curr]->musicName;
+    return l.music.size();
+}
+
+void showAllMusic(MusicList l)
+{
+    if (l.music.empty())
+    {
+        cout << "None." << endl;
+        return;
+    }
+
+    for (int i = 0; i < l.music.size(); i++)
+    {
+        if (i == l.curr)
+        {
+            cout << setfill(' ') << setw(3) << i << ": " INVERSE << l.music[i].musicName << RESETFMT << endl;
+            continue;
+        }
+        cout << setfill(' ') << setw(3) << i << ": " << l.music[i].musicName << endl;
+    }
 }

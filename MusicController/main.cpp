@@ -6,7 +6,7 @@
 #include <Controller.h>
 #include <Format.h>
 
-int main (void)
+int main ()
 {
     auto * c = new Controller();
 

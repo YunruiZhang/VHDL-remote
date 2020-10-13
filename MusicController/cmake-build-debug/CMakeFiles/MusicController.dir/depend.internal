@@ -10,6 +10,7 @@ CMakeFiles/MusicController.dir/main.cpp.o
  /Users/kpz/Downloads/GitHub/3601-Project/MusicController/main.cpp
 CMakeFiles/MusicController.dir/source/Controller.cpp.o
  ../include/Controller.h
+ ../include/Format.h
  ../include/MusicList.h
  ../include/Strs.h
  /Users/kpz/Downloads/GitHub/3601-Project/MusicController/source/Controller.cpp

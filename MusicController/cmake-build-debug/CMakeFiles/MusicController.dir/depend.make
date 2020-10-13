@@ -9,6 +9,7 @@ CMakeFiles/MusicController.dir/main.cpp.o: ../include/Strs.h
 CMakeFiles/MusicController.dir/main.cpp.o: ../main.cpp
 
 CMakeFiles/MusicController.dir/source/Controller.cpp.o: ../include/Controller.h
+CMakeFiles/MusicController.dir/source/Controller.cpp.o: ../include/Format.h
 CMakeFiles/MusicController.dir/source/Controller.cpp.o: ../include/MusicList.h
 CMakeFiles/MusicController.dir/source/Controller.cpp.o: ../include/Strs.h
 CMakeFiles/MusicController.dir/source/Controller.cpp.o: ../source/Controller.cpp

@@ -7,13 +7,17 @@
 #define MUSICCONTROLLER_MUSICLIST_H
 
 using namespace std;
+namespace fs = filesystem;
 
-typedef struct ItemMusic
+typedef struct NodeMusic
 {
-    char * musicName;
-} ItemMusic;
+    string musicName;
+} NodeMusic;
 
-typedef struct MusicListRep  * MusicList;
+typedef struct MusicListRep {
+    vector<NodeMusic>   music;
+    int                 curr{};
+} MusicList;
 
 
 /** FUNCTIONS **/
@@ -26,40 +30,40 @@ MusicList newMusicList();
 
 /**
  * Add a music to MusicList. If this music exists, then it will not be added.
+ * @return 1 if success, or 0 if fail.
  */
-void addMusic(MusicList, const char *);
+int addMusic(MusicList&, const string&);
 
 /**
  * Load music from a directory.
  */
-void loadMusic(MusicList, const char *);
+void loadMusic(MusicList&, const char *);
 
-/**
- * Free MusicList.
- */
-void freeMusicList(MusicList);
 
 /**
  * Check if the music exists in MusicList.
  * @return {@code true} if it exists, or {@code false} if not.
  */
-bool musicExist(MusicList, const char *);
+bool musicExist(MusicList, const string&);
 
 /**
  * Find the index of a specific music.
  * @return the index of that music
  */
-int musicIndex(MusicList, const char *);
+int musicIndex(MusicList, const string&);
 
 /**
  * Set the current index to a specific value.
  */
-void setCurrIndex(MusicList, int);
+void setCurrIndex(MusicList&, int);
 
 
-int getCurrIndex(MusicList);
-int getListSize(MusicList);
-char * getCurrentMusic(MusicList);
+int getCurrIndex(const MusicList&);
+int getListSize(const MusicList&);
+string getCurrMusic(MusicList);
+void showAllMusic(MusicList);
+
+NodeMusic newNodeMusic(const string&);
 
 
 #endif //MUSICCONTROLLER_MUSICLIST_H
