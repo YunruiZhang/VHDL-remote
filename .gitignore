@@ -1,6 +1,9 @@
 *.DS_Store
 
-out/
-cmake-build-debug/
 .idea/
 .vs/
+cmake-build-debug/
+out/
+*.hpp.gch
+*.o
+MusicController/MusicController
