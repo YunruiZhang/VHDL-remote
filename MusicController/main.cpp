@@ -2,9 +2,9 @@
 // Created by Charlie on 2020/10/13.
 //
 
-#include <Command.h>
-#include <Controller.h>
-#include <Format.h>
+#include <Command.hpp>
+#include <Controller.hpp>
+#include <Format.hpp>
 
 int main ()
 {

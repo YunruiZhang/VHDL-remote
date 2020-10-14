@@ -2,8 +2,7 @@
 // Created by Charlie on 2020/10/10.
 //
 
-#include "Controller.h"
-#include "Format.h"
+#include "Controller.hpp"
 
 
 void Controller::play()

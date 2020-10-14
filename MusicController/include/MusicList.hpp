@@ -1,13 +1,17 @@
 //
 // Created by Charlie on 2020/10/10.
 //
+
 #include <string>
-#include <Strs.h>
-#ifndef MUSICCONTROLLER_MUSICLIST_H
-#define MUSICCONTROLLER_MUSICLIST_H
+
+#include "Format.hpp"
+#include "Strs.hpp"
+
+#ifndef MUSICCONTROLLER_MUSICLIST_HPP
+#define MUSICCONTROLLER_MUSICLIST_HPP
 
 using namespace std;
-namespace fs = filesystem;
+namespace fs = std::__fs::filesystem;
 
 typedef struct NodeMusic
 {

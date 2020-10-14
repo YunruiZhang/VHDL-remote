@@ -3,12 +3,11 @@
 //
 
 #include <algorithm>
-#include <cstdlib>
 #include <dirent.h>
-#include <Format.h>
 #include <iomanip>
 #include <utility>
-#include "MusicList.h"
+
+#include "MusicList.hpp"
 
 /**
  * Check if a file is playable by its suffix.

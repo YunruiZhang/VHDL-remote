@@ -2,7 +2,7 @@
 // Created by Charlie on 2020/10/13.
 //
 
-#include <Command.h>
+#include "Command.hpp"
 
 void helpCommand()
 {
@@ -14,8 +14,9 @@ void helpCommand()
     "    pause            Pause" << endl <<
     "    prev             Previous song" << endl <<
     "    next             Next song" << endl <<
-    "    volume [id]      Increase(i) or decrease(d) volume." << endl <<
+    "    volume [id]      Increase(i) or decrease(d) volume" << endl <<
     "    mode [ors]       Play music orderly(o), randomly(r) or circularly(s)" << endl <<
+    "    list             Display all music in the playlist" << endl <<
     "    quit             Quit the program" << endl;
 }
 

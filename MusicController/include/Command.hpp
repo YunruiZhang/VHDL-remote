@@ -3,12 +3,14 @@
 //
 
 #include <iostream>
-#include <Format.h>
-#include <Strs.h>
 #include <vector>
-#include "Controller.h"
-#ifndef MUSICCONTROLLER_COMMAND_H
-#define MUSICCONTROLLER_COMMAND_H
+
+#include "Controller.hpp"
+#include "Format.hpp"
+#include "Strs.hpp"
+
+#ifndef MUSICCONTROLLER_COMMAND_HPP
+#define MUSICCONTROLLER_COMMAND_HPP
 
 using namespace std;
 

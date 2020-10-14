@@ -3,9 +3,12 @@
 //
 
 #include <cstdlib>
-#include "MusicList.h"
-#ifndef MUSICCONTROLLER_CONTROLLER_H
-#define MUSICCONTROLLER_CONTROLLER_H
+
+#include "Format.hpp"
+#include "MusicList.hpp"
+
+#ifndef MUSICCONTROLLER_CONTROLLER_HPP
+#define MUSICCONTROLLER_CONTROLLER_HPP
 
 enum mode {SINGLE_PLAY, ORDER_PLAY, RANDOM_PLAY};
 

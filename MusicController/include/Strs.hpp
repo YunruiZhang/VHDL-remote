@@ -2,8 +2,8 @@
 // Created by Charlie on 2020/10/12.
 //
 
-#ifndef MUSICCONTROLLER_STRS_H
-#define MUSICCONTROLLER_STRS_H
+#ifndef MUSICCONTROLLER_STRS_HPP
+#define MUSICCONTROLLER_STRS_HPP
 
 #include <string>
 #include <iostream>
