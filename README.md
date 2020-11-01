@@ -2,7 +2,9 @@
 
 > Orange Team
 
-Contains hardware and software programs.
+Contains softwares.
+
+
 
 
 # Gantt Chart
