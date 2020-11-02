@@ -2,9 +2,9 @@ import random
 from os import listdir
 
 # Music Play Mode
-circulate_play = 1
-random_play = 2
-normal_play = 3
+circulate_play = 0
+random_play = 1
+normal_play = 2
 
 
 class MusicList:
