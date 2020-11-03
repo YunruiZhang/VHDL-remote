@@ -1,12 +1,14 @@
 import tkinter as tk
 from tkinter import *
 from tkinter import filedialog
+from timer import Timer
 
 import pygame
 from PIL import Image, ImageTk
 
 from MusicList import *
 from color import *
+from socket import *
 
 
 class MusicController:
@@ -44,6 +46,34 @@ class MusicController:
     vol_icon_7 = tk.Label(master=window, width=5, height=5, image=vol_icon_img, bg=PRESTIGE_BLUE)
     vol_icon_8 = tk.Label(master=window, width=5, height=5, image=vol_icon_img, bg=PRESTIGE_BLUE)
     vol_icon_9 = tk.Label(master=window, width=5, height=5, image=vol_icon_img, bg=PRESTIGE_BLUE)
+
+    # socket
+
+    # Define connection (socket) parameters
+    # Address + Port no
+    # Server would be running on the same host as Client
+    # change this port number if required
+
+    serverPort = 12000
+
+    # This line creates the server’s socket. The first parameter indicates the address family; in particular,
+    # AF_INET indicates that the underlying network is using IPv4.The second parameter indicates that the socket is
+    # of type SOCK_STREAM,which means it is a TCP socket (rather than a UDP socket, where we use SOCK_DGRAM).
+
+    serverSocket = socket(AF_INET, SOCK_STREAM)
+
+    # The above line binds (that is, assigns) the port number 12000 to the server’s socket. In this manner,
+    # when anyone sends a packet to port 12000 at the IP address of the server (localhost in this case), that packet
+    # will be directed to this socket.
+
+    serverSocket.bind(('localhost', serverPort))
+
+    # The serverSocket then goes in the listen state to listen for client connection requests.
+
+    serverSocket.listen(1)
+
+    print("The server is ready to receive")
+
 
     def __init__(self):
         self.window.geometry("500x300")
@@ -109,6 +139,7 @@ class MusicController:
         pygame.init()
         pygame.mixer.init()
 
+        self.window.after(1000, self.recvcmd)
         self.window.mainloop()
 
     def play(self):
@@ -210,3 +241,53 @@ class MusicController:
         }
 
         sw.get(cmd, self.rec_error_msg)()
+
+    def recvcmd(self):
+        # give a period to wait
+        # t = Timer()
+        # t.start()
+
+        # FIXME
+        #   Every 2 secs, the python program will send a signal to c++, then c++ send command to python.
+        #   This will be done in 100ms.
+
+
+        # When a client knocks on this door, the program invokes the accept( ) method for serverSocket, which creates
+        # a new socket in the server, called connectionSocket, dedicated to this particular client. The client and
+        # server then complete the handshaking, creating a TCP connection between the client’s clientSocket and the
+        # server’s connectionSocket. With the TCP connection established, the client and server can now send bytes to
+        # each other over the connection. With TCP, all bytes sent from one side not are not only guaranteed to
+        # arrive at the other side but also guaranteed to arrive in order
+        connectionSocket, addr = self.serverSocket.accept()
+
+        # FIXME ^
+        #   目前的情况大概是：主UI界面得循环，用mainloop,update,after这些function（否则显示不出来），
+        #   然后上面这个accept得等着，如果没接收到东西就会一直卡着。
+        #   我的想法是，如果可以，有没有什么办法给上面的动作设定一个期限，超过就跳过。
+        #   这是一个多线程的问题。接收信号就不能在UI上操作，反之亦然，就，挺棘手的。
+        #   我也在想，希望尽快解决。
+
+        # to indicate ready to receive
+        connectionSocket.send(b'Ready')
+
+        # wait for data to arrive from the client
+        sentence = connectionSocket.recv(1024)
+
+        # do the corresponding command
+        self.do_command(sentence.decode().upper())
+
+        # change the case of the message received from client
+
+        capitalizedSentence = sentence.upper()
+
+        # and send it back to client
+
+        connectionSocket.send(capitalizedSentence)
+
+        # close the connectionSocket. Note that the serverSocket is still alive waiting for new clients to connect,
+        # we are only closing the connectionSocket.
+
+        connectionSocket.close()
+
+
+        self.window.after(1000, self.recvcmd)
