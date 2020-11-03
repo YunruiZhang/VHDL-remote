@@ -21,8 +21,7 @@ class MusicController:
                                font='Consolas 9', bg=PRESTIGE_BLUE, anchor='w')
 
     curr_vol = IntVar()
-    curr_vol.set(50)
-    curr_vol_label = tk.Label(master=window, width=4, height=1, textvariable=str(curr_vol), fg=SILVER, bg=PRESTIGE_BLUE)
+    curr_vol.set(5)
 
     first_time_play = True
 
@@ -31,6 +30,20 @@ class MusicController:
     random_play_img = ImageTk.PhotoImage(Image.open('pics/027-shuffle arrows.png').resize((20, 20), Image.ANTIALIAS))
 
     mode_switch_btn = tk.Button(master=window, width=30, height=30, image=normal_play_img, bg=WISTERIA)
+
+    vol_icon_img = ImageTk.PhotoImage(Image.open('pics/blur.png').resize((5, 5), Image.ANTIALIAS))
+
+    # THE ICON HAVE TO BE SEPARATED
+    vol_icon_0 = tk.Label(master=window, width=5, height=5, image=vol_icon_img, bg=PRESTIGE_BLUE)
+    vol_icon_1 = tk.Label(master=window, width=5, height=5, image=vol_icon_img, bg=PRESTIGE_BLUE)
+    vol_icon_2 = tk.Label(master=window, width=5, height=5, image=vol_icon_img, bg=PRESTIGE_BLUE)
+    vol_icon_3 = tk.Label(master=window, width=5, height=5, image=vol_icon_img, bg=PRESTIGE_BLUE)
+    vol_icon_4 = tk.Label(master=window, width=5, height=5, image=vol_icon_img, bg=PRESTIGE_BLUE)
+    vol_icon_5 = tk.Label(master=window, width=5, height=5, image=vol_icon_img, bg=PRESTIGE_BLUE)
+    vol_icon_6 = tk.Label(master=window, width=5, height=5, image=vol_icon_img, bg=PRESTIGE_BLUE)
+    vol_icon_7 = tk.Label(master=window, width=5, height=5, image=vol_icon_img, bg=PRESTIGE_BLUE)
+    vol_icon_8 = tk.Label(master=window, width=5, height=5, image=vol_icon_img, bg=PRESTIGE_BLUE)
+    vol_icon_9 = tk.Label(master=window, width=5, height=5, image=vol_icon_img, bg=PRESTIGE_BLUE)
 
     def __init__(self):
         self.window.geometry("500x300")
@@ -66,11 +79,11 @@ class MusicController:
 
         inc_vol_img = ImageTk.PhotoImage(Image.open('pics/016-volume up.png').resize((20, 20), Image.ANTIALIAS))
         inc_vol_btn = tk.Button(master=self.window, width=25, height=25, image=inc_vol_img, command=self.inc_vol, bg=LIME_SOUP)
-        inc_vol_btn.place(x=455, y=130)
+        inc_vol_btn.place(x=455, y=135)
 
         dec_vol_img = ImageTk.PhotoImage(Image.open('pics/017-volume down.png').resize((20, 20), Image.ANTIALIAS))
         dec_vol_btn = tk.Button(master=self.window, width=25, height=25, image=dec_vol_img, command=self.dec_vol, bg=WATERMELON)
-        dec_vol_btn.place(x=400, y=130)
+        dec_vol_btn.place(x=400, y=135)
 
         pic1_img = ImageTk.PhotoImage(Image.open('pics/sound.png').resize((80, 80), Image.ANTIALIAS))
         pic1 = tk.Label(master=self.window, width=80, height=80, image=pic1_img, bg=PRESTIGE_BLUE)
@@ -88,10 +101,10 @@ class MusicController:
 
         self.curr_song_label.place(x=60, y=100)
 
-        self.curr_vol_label.place(x=455, y=180)
-
         self.mode_switch_btn.place(x=50, y=250)
         self.mode_switch_btn['command'] = self.mode_sw
+
+        self.set_volume_icon()
 
         pygame.init()
         pygame.mixer.init()
@@ -128,12 +141,14 @@ class MusicController:
         self.play()
 
     def inc_vol(self):
-        self.curr_vol.set(min(self.curr_vol.get() + 10, 100))
-        pygame.mixer.music.set_volume(self.curr_vol.get() / 100)
+        self.curr_vol.set(min(self.curr_vol.get() + 1, 10))
+        pygame.mixer.music.set_volume(self.curr_vol.get() / 10)
+        self.set_volume_icon()
 
     def dec_vol(self):
-        self.curr_vol.set(max(self.curr_vol.get() - 10, 0))
-        pygame.mixer.music.set_volume(self.curr_vol.get() / 100)
+        self.curr_vol.set(max(self.curr_vol.get() - 1, 0))
+        pygame.mixer.music.set_volume(self.curr_vol.get() / 10)
+        self.set_volume_icon()
 
     def quit(self):
         pygame.quit()
@@ -149,7 +164,7 @@ class MusicController:
         # load the first song
         song_full_addr = self.directory + self.ml.current_song
         pygame.mixer.music.load(song_full_addr)
-        pygame.mixer.music.set_volume(self.curr_vol.get() / 100)
+        pygame.mixer.music.set_volume(self.curr_vol.get() / 10)
 
     def mode_sw(self):
         self.ml.change_play_mode()
@@ -165,6 +180,18 @@ class MusicController:
             self.mode_switch_btn['image'] = self.random_play_img
         elif self.ml.play_mode == circulate_play:
             self.mode_switch_btn['image'] = self.circulate_play_img
+
+    def set_volume_icon(self):
+        self.vol_icon_0.place(x=400-10, y=180) if self.curr_vol.get() > 0 else self.vol_icon_0.place_forget()
+        self.vol_icon_1.place(x=410-10, y=180) if self.curr_vol.get() > 1 else self.vol_icon_1.place_forget()
+        self.vol_icon_2.place(x=420-10, y=180) if self.curr_vol.get() > 2 else self.vol_icon_2.place_forget()
+        self.vol_icon_3.place(x=430-10, y=180) if self.curr_vol.get() > 3 else self.vol_icon_3.place_forget()
+        self.vol_icon_4.place(x=440-10, y=180) if self.curr_vol.get() > 4 else self.vol_icon_4.place_forget()
+        self.vol_icon_5.place(x=450-10, y=180) if self.curr_vol.get() > 5 else self.vol_icon_5.place_forget()
+        self.vol_icon_6.place(x=460-10, y=180) if self.curr_vol.get() > 6 else self.vol_icon_6.place_forget()
+        self.vol_icon_7.place(x=470-10, y=180) if self.curr_vol.get() > 7 else self.vol_icon_7.place_forget()
+        self.vol_icon_8.place(x=480-10, y=180) if self.curr_vol.get() > 8 else self.vol_icon_8.place_forget()
+        self.vol_icon_9.place(x=490-10, y=180) if self.curr_vol.get() > 9 else self.vol_icon_9.place_forget()
 
     def do_command(self, cmd: str):
         '''
