@@ -139,7 +139,7 @@ class MusicController:
         pygame.init()
         pygame.mixer.init()
 
-        self.window.after(1000, self.recvcmd)
+        # self.window.after(1000, self.recvcmd)
         self.window.mainloop()
 
     def play(self):
@@ -154,6 +154,7 @@ class MusicController:
 
     def stop(self):
         pygame.mixer.music.stop()
+        self.first_time_play = True
 
     def prev(self):
         pygame.mixer.music.load(self.directory + self.ml.choose_next_song(prev=True))
