@@ -15,3 +15,6 @@ LIME_SOUP = '#7bed9f'
 WATERMELON = '#ff4757'
 SATURATED_SKY = '#5352ed'
 SILVER = '#bdc3c7'
+
+RED_ORANGE = '#ff3838'
+NEON_BLUE = '#18dcff'

@@ -47,6 +47,9 @@ class MusicController:
     vol_icon_8 = tk.Label(master=window, width=5, height=5, image=vol_icon_img, bg=PRESTIGE_BLUE)
     vol_icon_9 = tk.Label(master=window, width=5, height=5, image=vol_icon_img, bg=PRESTIGE_BLUE)
 
+    irr_img = ImageTk.PhotoImage(Image.open('pics/remote-control.png').resize((30, 30), Image.ANTIALIAS))
+    irr_btn = tk.Button(master=window, width=30, height=30, image=irr_img, bg=NEON_BLUE)
+
     # socket
 
     # Define connection (socket) parameters
@@ -72,7 +75,7 @@ class MusicController:
 
     serverSocket.listen(1)
 
-    print("The server is ready to receive")
+    print("The server is ready to receive.")
 
 
     def __init__(self):
@@ -126,6 +129,9 @@ class MusicController:
         song_img = ImageTk.PhotoImage(Image.open('pics/sound-2.png').resize((30, 30), Image.ANTIALIAS))
         curr_song_img = tk.Label(master=self.window, width=40, height=40, image=song_img, bg=PRESTIGE_BLUE)
         curr_song_img.place(x=10, y=100)
+
+        self.irr_btn['command'] = self.recvcmd
+        self.irr_btn.place(x=400, y=0)
 
         self.curr_dir_label.place(x=60, y=50)
 
@@ -244,51 +250,42 @@ class MusicController:
         sw.get(cmd, self.rec_error_msg)()
 
     def recvcmd(self):
-        # give a period to wait
-        # t = Timer()
-        # t.start()
+        quit = False
 
-        # FIXME
-        #   Every 2 secs, the python program will send a signal to c++, then c++ send command to python.
-        #   This will be done in 100ms.
+        self.irr_btn['bg'] = PUMPKIN
 
+        print('Ready to receive.')
 
-        # When a client knocks on this door, the program invokes the accept( ) method for serverSocket, which creates
-        # a new socket in the server, called connectionSocket, dedicated to this particular client. The client and
-        # server then complete the handshaking, creating a TCP connection between the client’s clientSocket and the
-        # server’s connectionSocket. With the TCP connection established, the client and server can now send bytes to
-        # each other over the connection. With TCP, all bytes sent from one side not are not only guaranteed to
-        # arrive at the other side but also guaranteed to arrive in order
-        connectionSocket, addr = self.serverSocket.accept()
+        while not quit:
 
-        # FIXME ^
-        #   目前的情况大概是：主UI界面得循环，用mainloop,update,after这些function（否则显示不出来），
-        #   然后上面这个accept得等着，如果没接收到东西就会一直卡着。
-        #   我的想法是，如果可以，有没有什么办法给上面的动作设定一个期限，超过就跳过。
-        #   这是一个多线程的问题。接收信号就不能在UI上操作，反之亦然，就，挺棘手的。
-        #   我也在想，希望尽快解决。
+            # When a client knocks on this door, the program invokes the accept( ) method for serverSocket, which creates
+            # a new socket in the server, called connectionSocket, dedicated to this particular client. The client and
+            # server then complete the handshaking, creating a TCP connection between the client’s clientSocket and the
+            # server’s connectionSocket. With the TCP connection established, the client and server can now send bytes to
+            # each other over the connection. With TCP, all bytes sent from one side not are not only guaranteed to
+            # arrive at the other side but also guaranteed to arrive in order
+            connectionSocket, addr = self.serverSocket.accept()
 
-        # to indicate ready to receive
-        connectionSocket.send(b'Ready')
+            # to indicate ready to receive
+            connectionSocket.send(b'Ready')
 
-        # wait for data to arrive from the client
-        sentence = connectionSocket.recv(1024)
+            # wait for data to arrive from the client
+            sentence = connectionSocket.recv(1024)
 
-        # do the corresponding command
-        self.do_command(sentence.decode().upper())
+            # do the corresponding command
+            if sentence == "QUITIR":
+                self.irr_btn['bg'] = NEON_BLUE
+                quit = True
+                print('Back to windows.')
+            else:
+                self.do_command(sentence.decode().upper())
 
-        # change the case of the message received from client
+            # change the case of the message received from client
+            capitalizedSentence = sentence.upper()
 
-        capitalizedSentence = sentence.upper()
+            # and send it back to client
+            connectionSocket.send(capitalizedSentence)
 
-        # and send it back to client
-
-        connectionSocket.send(capitalizedSentence)
-
-        # close the connectionSocket. Note that the serverSocket is still alive waiting for new clients to connect,
-        # we are only closing the connectionSocket.
-
-        connectionSocket.close()
-
-
-        self.window.after(1000, self.recvcmd)
+            # close the connectionSocket. Note that the serverSocket is still alive waiting for new clients to connect,
+            # we are only closing the connectionSocket.
+            connectionSocket.close()
