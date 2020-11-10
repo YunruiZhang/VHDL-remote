@@ -52,7 +52,7 @@ class MusicList:
 
         elif self.play_mode == random_play:
             j = i
-            while(j == i):
+            while (j == i):
                 j = random.randint(0, len(self.music_list))
             i = j
 

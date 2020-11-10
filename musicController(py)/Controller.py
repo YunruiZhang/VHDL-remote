@@ -1,14 +1,12 @@
 import tkinter as tk
 from tkinter import *
 from tkinter import filedialog
-from timer import Timer
 
 import pygame
 from PIL import Image, ImageTk
 
 from MusicList import *
 from color import *
-from socket import *
 
 
 class MusicController:
@@ -16,6 +14,8 @@ class MusicController:
     directory = ""
 
     window = tk.Tk()
+    window.geometry("500x300")
+    window.title("Music Controller")
     window['bg'] = PRESTIGE_BLUE
     curr_dir_label = tk.Label(master=window, width=50, height=3, text="No directory yet...", fg=TURQUOISE,
                               font='Consolas 10', bg=PRESTIGE_BLUE, anchor='w')
@@ -47,106 +47,84 @@ class MusicController:
     vol_icon_8 = tk.Label(master=window, width=5, height=5, image=vol_icon_img, bg=PRESTIGE_BLUE)
     vol_icon_9 = tk.Label(master=window, width=5, height=5, image=vol_icon_img, bg=PRESTIGE_BLUE)
 
-    irr_img = ImageTk.PhotoImage(Image.open('pics/remote-control.png').resize((30, 30), Image.ANTIALIAS))
-    irr_btn = tk.Button(master=window, width=30, height=30, image=irr_img, bg=NEON_BLUE)
+    # irr_img = ImageTk.PhotoImage(Image.open('pics/remote-control.png').resize((30, 30), Image.ANTIALIAS))
+    # irr_btn = tk.Button(master=window, width=30, height=30, image=irr_img, bg=NEON_BLUE)
 
-    # socket
+    play_img = ImageTk.PhotoImage(Image.open('pics/020-play.png').resize((20, 20), Image.ANTIALIAS))
+    play_btn = tk.Button(master=window, width=30, height=30, image=play_img, bg=EMERALD)
+    play_btn.place(x=150, y=250)
 
-    # Define connection (socket) parameters
-    # Address + Port no
-    # Server would be running on the same host as Client
-    # change this port number if required
+    pause_img = ImageTk.PhotoImage(Image.open('pics/021-pause.png').resize((20, 20), Image.ANTIALIAS))
+    pause_btn = tk.Button(master=window, width=30, height=30, image=pause_img, bg=SUN_FLOWER)
+    pause_btn.place(x=200, y=250)
 
-    serverPort = 12000
+    prev_img = ImageTk.PhotoImage(Image.open('pics/024-previous.png').resize((20, 20), Image.ANTIALIAS))
+    previous_btn = tk.Button(master=window, width=30, height=30, image=prev_img, bg=SATURATED_SKY)
+    previous_btn.place(x=100, y=250)
 
-    # This line creates the server’s socket. The first parameter indicates the address family; in particular,
-    # AF_INET indicates that the underlying network is using IPv4.The second parameter indicates that the socket is
-    # of type SOCK_STREAM,which means it is a TCP socket (rather than a UDP socket, where we use SOCK_DGRAM).
+    next_img = ImageTk.PhotoImage(Image.open('pics/023-next.png').resize((20, 20), Image.ANTIALIAS))
+    next_btn = tk.Button(master=window, width=30, height=30, image=next_img, bg=SATURATED_SKY)
+    next_btn.place(x=300, y=250)
 
-    serverSocket = socket(AF_INET, SOCK_STREAM)
+    stop_img = ImageTk.PhotoImage(Image.open('pics/004-disc.png').resize((20, 20), Image.ANTIALIAS))
+    stop_btn = tk.Button(master=window, width=30, height=30, image=stop_img, bg=ALIZARIN)
+    stop_btn.place(x=250, y=250)
 
-    # The above line binds (that is, assigns) the port number 12000 to the server’s socket. In this manner,
-    # when anyone sends a packet to port 12000 at the IP address of the server (localhost in this case), that packet
-    # will be directed to this socket.
+    quit_img = ImageTk.PhotoImage(Image.open('pics/remove.png').resize((20, 20), Image.ANTIALIAS))
+    quit_btn = tk.Button(master=window, width=30, height=30, image=quit_img, bg=POMEGRANATE)
+    quit_btn.place(x=450, y=0)
 
-    serverSocket.bind(('localhost', serverPort))
+    load_img = ImageTk.PhotoImage(Image.open('pics/011-list.png').resize((20, 20), Image.ANTIALIAS))
+    load_btn = tk.Button(master=window, width=30, height=30, image=load_img, bg=PUMPKIN)
+    load_btn.place(x=450, y=50)
 
-    # The serverSocket then goes in the listen state to listen for client connection requests.
+    inc_vol_img = ImageTk.PhotoImage(Image.open('pics/016-volume up.png').resize((20, 20), Image.ANTIALIAS))
+    inc_vol_btn = tk.Button(master=window, width=25, height=25, image=inc_vol_img, bg=LIME_SOUP)
+    inc_vol_btn.place(x=455, y=135)
 
-    serverSocket.listen(1)
+    dec_vol_img = ImageTk.PhotoImage(Image.open('pics/017-volume down.png').resize((20, 20), Image.ANTIALIAS))
+    dec_vol_btn = tk.Button(master=window, width=25, height=25, image=dec_vol_img, bg=WATERMELON)
+    dec_vol_btn.place(x=400, y=135)
 
-    print("The server is ready to receive.")
+    pic1_img = ImageTk.PhotoImage(Image.open('pics/sound.png').resize((80, 80), Image.ANTIALIAS))
+    pic1 = tk.Label(master=window, width=80, height=80, image=pic1_img, bg=PRESTIGE_BLUE)
+    pic1.place(x=400, y=200)
 
+    dir_img = ImageTk.PhotoImage(Image.open('pics/files.png').resize((30, 30), Image.ANTIALIAS))
+    curr_dir_img = tk.Label(master=window, width=40, height=40, image=dir_img, bg=PRESTIGE_BLUE)
+    curr_dir_img.place(x=10, y=50)
+
+    song_img = ImageTk.PhotoImage(Image.open('pics/sound-2.png').resize((30, 30), Image.ANTIALIAS))
+    curr_song_img = tk.Label(master=window, width=40, height=40, image=song_img, bg=PRESTIGE_BLUE)
+    curr_song_img.place(x=10, y=100)
+
+    # self.irr_btn['command'] = self.recvcmd
+    # self.irr_btn.place(x=400, y=0)
+
+    curr_dir_label.place(x=60, y=50)
+
+    curr_song_label.place(x=60, y=100)
+
+    mode_switch_btn.place(x=50, y=250)
+
+    pygame.init()
+    pygame.mixer.init()
+
+    # self.window.mainloop()
 
     def __init__(self):
-        self.window.geometry("500x300")
-        self.window.title("Music Controller")
-
-        play_img = ImageTk.PhotoImage(Image.open('pics/020-play.png').resize((20, 20), Image.ANTIALIAS))
-        play_btn = tk.Button(master=self.window, width=30, height=30, image=play_img, command=self.play, bg=EMERALD)
-        play_btn.place(x=150, y=250)
-
-        pause_img = ImageTk.PhotoImage(Image.open('pics/021-pause.png').resize((20, 20), Image.ANTIALIAS))
-        pause_btn = tk.Button(master=self.window, width=30, height=30, image=pause_img, command=self.pause, bg=SUN_FLOWER)
-        pause_btn.place(x=200, y=250)
-
-        prev_img = ImageTk.PhotoImage(Image.open('pics/024-previous.png').resize((20, 20), Image.ANTIALIAS))
-        previous_btn = tk.Button(master=self.window, width=30, height=30, image=prev_img, command=self.prev, bg=SATURATED_SKY)
-        previous_btn.place(x=100, y=250)
-
-        next_img = ImageTk.PhotoImage(Image.open('pics/023-next.png').resize((20, 20), Image.ANTIALIAS))
-        next_btn = tk.Button(master=self.window, width=30, height=30, image=next_img, command=self.next, bg=SATURATED_SKY)
-        next_btn.place(x=300, y=250)
-
-        stop_img = ImageTk.PhotoImage(Image.open('pics/004-disc.png').resize((20, 20), Image.ANTIALIAS))
-        stop_btn = tk.Button(master=self.window, width=30, height=30, image=stop_img, command=self.stop, bg=ALIZARIN)
-        stop_btn.place(x=250, y=250)
-
-        quit_img = ImageTk.PhotoImage(Image.open('pics/remove.png').resize((20, 20), Image.ANTIALIAS))
-        quit_btn = tk.Button(master=self.window, width=30, height=30, image=quit_img, command=self.quit, bg=POMEGRANATE)
-        quit_btn.place(x=450, y=0)
-
-        load_img = ImageTk.PhotoImage(Image.open('pics/011-list.png').resize((20, 20), Image.ANTIALIAS))
-        load_btn = tk.Button(master=self.window, width=30, height=30, image=load_img, command=self.load, bg=PUMPKIN)
-        load_btn.place(x=450, y=50)
-
-        inc_vol_img = ImageTk.PhotoImage(Image.open('pics/016-volume up.png').resize((20, 20), Image.ANTIALIAS))
-        inc_vol_btn = tk.Button(master=self.window, width=25, height=25, image=inc_vol_img, command=self.inc_vol, bg=LIME_SOUP)
-        inc_vol_btn.place(x=455, y=135)
-
-        dec_vol_img = ImageTk.PhotoImage(Image.open('pics/017-volume down.png').resize((20, 20), Image.ANTIALIAS))
-        dec_vol_btn = tk.Button(master=self.window, width=25, height=25, image=dec_vol_img, command=self.dec_vol, bg=WATERMELON)
-        dec_vol_btn.place(x=400, y=135)
-
-        pic1_img = ImageTk.PhotoImage(Image.open('pics/sound.png').resize((80, 80), Image.ANTIALIAS))
-        pic1 = tk.Label(master=self.window, width=80, height=80, image=pic1_img, bg=PRESTIGE_BLUE)
-        pic1.place(x=400, y=200)
-
-        dir_img = ImageTk.PhotoImage(Image.open('pics/files.png').resize((30, 30), Image.ANTIALIAS))
-        curr_dir_img = tk.Label(master=self.window, width=40, height=40, image=dir_img, bg=PRESTIGE_BLUE)
-        curr_dir_img.place(x=10, y=50)
-
-        song_img = ImageTk.PhotoImage(Image.open('pics/sound-2.png').resize((30, 30), Image.ANTIALIAS))
-        curr_song_img = tk.Label(master=self.window, width=40, height=40, image=song_img, bg=PRESTIGE_BLUE)
-        curr_song_img.place(x=10, y=100)
-
-        self.irr_btn['command'] = self.recvcmd
-        self.irr_btn.place(x=400, y=0)
-
-        self.curr_dir_label.place(x=60, y=50)
-
-        self.curr_song_label.place(x=60, y=100)
-
-        self.mode_switch_btn.place(x=50, y=250)
+        self.play_btn['command'] = self.play
+        self.pause_btn['command'] = self.pause
+        self.previous_btn['command'] = self.prev
+        self.next_btn['command'] = self.next
+        self.stop_btn['command'] = self.stop
+        self.load_btn['command'] = self.load
+        self.inc_vol_btn['command'] = self.inc_vol
+        self.dec_vol_btn['command'] = self.dec_vol
+        self.quit_btn['command'] = self.quit
         self.mode_switch_btn['command'] = self.mode_sw
 
         self.set_volume_icon()
-
-        pygame.init()
-        pygame.mixer.init()
-
-        # self.window.after(1000, self.recvcmd)
-        self.window.mainloop()
 
     def play(self):
         if self.first_time_play:
@@ -220,22 +198,22 @@ class MusicController:
             self.mode_switch_btn['image'] = self.circulate_play_img
 
     def set_volume_icon(self):
-        self.vol_icon_0.place(x=400-10, y=180) if self.curr_vol.get() > 0 else self.vol_icon_0.place_forget()
-        self.vol_icon_1.place(x=410-10, y=180) if self.curr_vol.get() > 1 else self.vol_icon_1.place_forget()
-        self.vol_icon_2.place(x=420-10, y=180) if self.curr_vol.get() > 2 else self.vol_icon_2.place_forget()
-        self.vol_icon_3.place(x=430-10, y=180) if self.curr_vol.get() > 3 else self.vol_icon_3.place_forget()
-        self.vol_icon_4.place(x=440-10, y=180) if self.curr_vol.get() > 4 else self.vol_icon_4.place_forget()
-        self.vol_icon_5.place(x=450-10, y=180) if self.curr_vol.get() > 5 else self.vol_icon_5.place_forget()
-        self.vol_icon_6.place(x=460-10, y=180) if self.curr_vol.get() > 6 else self.vol_icon_6.place_forget()
-        self.vol_icon_7.place(x=470-10, y=180) if self.curr_vol.get() > 7 else self.vol_icon_7.place_forget()
-        self.vol_icon_8.place(x=480-10, y=180) if self.curr_vol.get() > 8 else self.vol_icon_8.place_forget()
-        self.vol_icon_9.place(x=490-10, y=180) if self.curr_vol.get() > 9 else self.vol_icon_9.place_forget()
+        self.vol_icon_0.place(x=400 - 10, y=180) if self.curr_vol.get() > 0 else self.vol_icon_0.place_forget()
+        self.vol_icon_1.place(x=410 - 10, y=180) if self.curr_vol.get() > 1 else self.vol_icon_1.place_forget()
+        self.vol_icon_2.place(x=420 - 10, y=180) if self.curr_vol.get() > 2 else self.vol_icon_2.place_forget()
+        self.vol_icon_3.place(x=430 - 10, y=180) if self.curr_vol.get() > 3 else self.vol_icon_3.place_forget()
+        self.vol_icon_4.place(x=440 - 10, y=180) if self.curr_vol.get() > 4 else self.vol_icon_4.place_forget()
+        self.vol_icon_5.place(x=450 - 10, y=180) if self.curr_vol.get() > 5 else self.vol_icon_5.place_forget()
+        self.vol_icon_6.place(x=460 - 10, y=180) if self.curr_vol.get() > 6 else self.vol_icon_6.place_forget()
+        self.vol_icon_7.place(x=470 - 10, y=180) if self.curr_vol.get() > 7 else self.vol_icon_7.place_forget()
+        self.vol_icon_8.place(x=480 - 10, y=180) if self.curr_vol.get() > 8 else self.vol_icon_8.place_forget()
+        self.vol_icon_9.place(x=490 - 10, y=180) if self.curr_vol.get() > 9 else self.vol_icon_9.place_forget()
 
     def do_command(self, cmd: str):
-        '''
+        """
         Do the command
         :param cmd: the text received from socket.
-        '''
+        """
         sw = {
             'PLAY': self.play,
             'PAUSE': self.pause,
@@ -249,43 +227,5 @@ class MusicController:
 
         sw.get(cmd, self.rec_error_msg)()
 
-    def recvcmd(self):
-        quit = False
-
-        self.irr_btn['bg'] = PUMPKIN
-
-        print('Ready to receive.')
-
-        while not quit:
-
-            # When a client knocks on this door, the program invokes the accept( ) method for serverSocket, which creates
-            # a new socket in the server, called connectionSocket, dedicated to this particular client. The client and
-            # server then complete the handshaking, creating a TCP connection between the client’s clientSocket and the
-            # server’s connectionSocket. With the TCP connection established, the client and server can now send bytes to
-            # each other over the connection. With TCP, all bytes sent from one side not are not only guaranteed to
-            # arrive at the other side but also guaranteed to arrive in order
-            connectionSocket, addr = self.serverSocket.accept()
-
-            # to indicate ready to receive
-            connectionSocket.send(b'Ready')
-
-            # wait for data to arrive from the client
-            sentence = connectionSocket.recv(1024)
-
-            # do the corresponding command
-            if sentence == "QUITIR":
-                self.irr_btn['bg'] = NEON_BLUE
-                quit = True
-                print('Back to windows.')
-            else:
-                self.do_command(sentence.decode().upper())
-
-            # change the case of the message received from client
-            capitalizedSentence = sentence.upper()
-
-            # and send it back to client
-            connectionSocket.send(capitalizedSentence)
-
-            # close the connectionSocket. Note that the serverSocket is still alive waiting for new clients to connect,
-            # we are only closing the connectionSocket.
-            connectionSocket.close()
+    def enable_mainloop(self):
+        self.window.mainloop()
